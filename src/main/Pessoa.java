@@ -2,23 +2,24 @@ package main;
 
 import java.util.ArrayList;
 
-public class Pessoa extends Telefone{
+public class Pessoa {
 	String nome;
 	String cpf;
 	double salario;
 	String data_nascimento;
-	ArrayList<Telefone> contato = new ArrayList<>();
-
-	public Pessoa() {};
+	ArrayList<Telefone> contatos = new ArrayList<>();
+	Valida v = new Valida();
 	
-	public Pessoa(String nome, String cpf, double salario, String data_nascimento, ArrayList<Telefone> contato) {
+	public Pessoa() {};
+	public Pessoa(String nome, String cpf , double salario, String data_nascimento) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
 		this.salario = salario;
 		this.data_nascimento = data_nascimento;
-		this.contato = contato;
+	
 	}
+	
 
 	public String getNome() {
 		return nome;
@@ -54,13 +55,20 @@ public class Pessoa extends Telefone{
 
 	public void AddContato(String telefone) {  			// METODO PARA ADICIONAR CONTATOS TRANSFORMANDO UMA STRING EM TELEFONE
 		Telefone tel = new Telefone(telefone);
-		contato.add(tel);
+		contatos.add(tel);
+		
 	}
 	
 	public void showTelefone() {		
-		for(Telefone t : contato) {
+		for(Telefone t : contatos) {
 			String tel = String.valueOf(t.getTelefone());
-			System.out.println(tel);
+			if(tel == "null") {
+				System.out.println("(não informado)");
+			}
+			else {
+				System.out.print(" " +tel);
+			}
+			
 		}
 	}
 	
